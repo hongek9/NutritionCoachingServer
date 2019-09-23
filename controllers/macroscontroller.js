@@ -59,6 +59,18 @@ router.put('/:id', validateSessionCoach, (req,res) => {
         .catch(err => res.json({error: err}));
 })
 
+/*********************************
+ * DELE macros (coach)
+ ********************************/
+router.delete('/:id', validateSessionCoach, (req,res) => {
+    // console.log(req.client);
+    Macros.destroy({
+        where:{owner: req.params.id, coach: req.coach.id}
+    })
+        .then(macros => res.status(200).json(macros))
+        .catch(err => res.json({error: err}));
+})
+
 
 
 
